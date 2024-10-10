@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smiley Face</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      background-color: #f0f0f0;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="smileyCanvas"></canvas>
+  <script>
+    const canvas = document.getElementById('smileyCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // 设置画布尺寸为窗口大小
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // 定义笑脸的位置和大小
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = 150;
+
+    // 绘制笑脸
+    function drawSmileyFace() {
+      //背景
+      ctx.beginPath();
+      ctx.fillStyle = 'green';
+      ctx.fillRect(centerX-1000, centerY-1000, 2500, 2500);
+      //脸
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2, true); // Outer circle
+      ctx.fillStyle = 'yellow';
+      ctx.fill();
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = 'black';
+      ctx.stroke();
+
+      //眼睛
+      ctx.beginPath();
+      ctx.arc(centerX - 60, centerY - 50, 20, 0, Math.PI * 2, true); // Left eye
+      ctx.fillStyle = 'black';
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(centerX + 60, centerY - 50, 20, 0, Math.PI * 2, true); // Right eye
+      ctx.fillStyle = 'black';
+      ctx.fill();
+
+      //嘴巴
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 100, 0, Math.PI, false);  // Mouth (clockwise)
+      ctx.stroke();
+
+      //鼻子
+      ctx.beginPath();
+      ctx.moveTo(centerX,centerY-20);
+      ctx.lineTo(centerX,centerY+50)
+      ctx.stroke();
+
+      //文字
+      ctx.font="30px Arial";
+      ctx.fillText("The Canvas brought me to life !", centerX - 200, centerY + radius + 50);
+      context.fillStyle = 'red';
+      ctx.lineWidth=3;
+    }
+    drawSmileyFace();
+  </script>
+</body>
+</html>
